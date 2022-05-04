@@ -1,0 +1,13 @@
+{% extends 'base.twig' %}
+{% block body %}
+<div class="container">
+
+    <h1 class="mb-3 mt-5">Welcome to our first SlimProject!</h1>
+    {% if user is not null %}
+        <h2 class="mb-3 mt-5">Hello, {{ user.login|escape }}!</h2>
+    {% else %}
+        <h2 class="mb-3 mt-5">Please, log in to your account.</h2>
+    {% endif %}
+</div>
+{% endblock %}
+

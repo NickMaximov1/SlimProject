@@ -1,0 +1,23 @@
+{
+    "require": {
+        "slim/slim": "^4.10",
+        "slim/psr7": "^1.5",
+        "twig/twig": "^3.3",
+        "ext-pdo": "*",
+        "lulco/phoenix": "^2.2",
+        "doctrine/orm": "^2.12",
+        "symfony/cache": "^6.0",
+        "doctrine/annotations": "^1.13"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src",
+            "Middleware\\": "middleware",
+            "Controller\\": "controllers",
+            "Model\\": "models",
+            "CustomExp\\": "exceptions",
+            "Repository\\": "repositories"
+        }
+    }
+}

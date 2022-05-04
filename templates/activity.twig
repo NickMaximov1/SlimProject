@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    {% if 'admin' == user.role %}
+        <br>
+        <div class="container">
+            <h1>Activity</h1>
+            <table class="table table-hover table-borderless">
+                <thead class="table-light">
+                <tr>
+                    <th scope="col">Login</th>
+                    <th scope="col">Ip</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Time of running</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for action in actions %}
+                            <tr>
+                                <th scope="row">{{ action.login|escape }}</th>
+                                <td>{{ action.ip|escape }}</td>
+                                <td>{{ action.action|escape }}</td>
+                                <td>{{ action.time|escape }}</td>
+                                <td>{{ action.timeRunning|escape }}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="container">
+            <h1 class="mb-3 mt-5">This is not your business</h1>
+        </div>
+    {% endif %}
+{% endblock %}
