@@ -5,6 +5,6 @@ namespace CustomExp;
 
 use Exception;
 
-class LoginException extends Exception
+class InvalidArgumentException extends Exception
 {
 }

@@ -8,6 +8,9 @@ use CustomExp\AddException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Repository\UserRepository;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class AddUserController extends Controller
 {
@@ -16,11 +19,11 @@ class AddUserController extends Controller
      * @param Request $request
      * @param Response $response
      * @return Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function __invoke(Request $request, Response $response): Response
+    public function viewLogin(Request $request, Response $response): Response
     {
         $body = $this->getTwig()->render('addUser.twig', [
             'message' => $this->getSession()->flush('message'),
@@ -32,6 +35,12 @@ class AddUserController extends Controller
         return $response;
     }
 
+    /**
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     */
     public function addUser(Request $request, Response $response): Response
     {
         $userRepo = new UserRepository();

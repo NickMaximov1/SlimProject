@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App;
 
-use http\Exception\InvalidArgumentException;
+use CustomExp\InvalidArgumentException;
 use PDO;
 use PDOException;
 
@@ -11,6 +11,9 @@ class Database
 {
     private PDO $connection;
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public function __construct()
     {
         try {
@@ -28,12 +31,24 @@ class Database
         $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_CLASS);
     }
 
+    /**
+     * Return PDO connection
+     * @return PDO
+     */
     public function getConnection(): PDO
     {
         return $this->connection;
     }
 
-    public function query(string $sql, string $class, array $data = [])
+    /**
+     * Return result of query or null
+     * @param string $sql
+     * @param string $class
+     * @param array $data
+     * @return array|null
+     * @throws PDOException
+     */
+    public function query(string $sql, string $class, array $data = []): ?array
     {
         $statement = $this->connection->prepare($sql);
         if(!$statement->execute($data)){
@@ -41,15 +56,25 @@ class Database
         }
 
         $result = $statement->fetchAll(\PDO::FETCH_CLASS, $class);
-        return empty($result) ? null : $result;
 
+        return empty($result) ? null : $result;
     }
 
-    public function save($sql, $data)
+    /**
+     * Return true on success or throw PDOException
+     * @param $sql
+     * @param $data
+     * @return bool
+     * @throws PDOException
+     */
+    public function save($sql, $data): bool
     {
         $statement = $this->connection->prepare($sql);
-        return !$statement->execute($data) ? throw new PDOException('The request can`t be done!') :
-            true;
-    }
 
+        if ($statement->execute($data)) {
+            return true;
+        }
+
+        throw new PDOException('The request can`t be done!');
+    }
 }

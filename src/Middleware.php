@@ -15,14 +15,21 @@ abstract class Middleware
 
     }
 
+    /**
+     * Return Database
+     * @return Database
+     */
     public function getDatabase(): Database
     {
         return $this->database;
     }
 
+    /**
+     * Return Session
+     * @return Session
+     */
     public function getSession(): Session
     {
         return $this->session;
     }
-
 }

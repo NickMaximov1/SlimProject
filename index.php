@@ -10,8 +10,8 @@ use Controller\LoginController;
 use Controller\UsersListController;
 use Middleware\LogMiddleware;
 use Middleware\SessionMiddleware;
+use Repository\UserRepository;
 use Slim\Factory\AppFactory;
-
 //create new App object
 $app = AppFactory::create();
 $app->addBodyParsingMiddleware(); // $_POST
@@ -23,11 +23,11 @@ $app->add(new SessionMiddleware());
 $app->add(new LogMiddleware());
 
 //render controllers
-$app->get('/', new IndexController());
-$app->get('/login', new LoginController());
-$app->get('/add-user', new AddUserController());
-$app->get('/activity', new ActivityController());
-$app->get('/users-list', new UsersListController());
+$app->get('/', IndexController::class . ':viewIndex');
+$app->get('/login', LoginController::class . ':viewLogin');
+$app->get('/add-user', AddUserController::class . ':viewLogin');
+$app->get('/activity', ActivityController::class . ':viewActivity');
+$app->get('/users-list', UsersListController::class . ':viewUsersList');
 
 //action controllers
 $app->post('/login-post', LoginController::class . ':loginPost');

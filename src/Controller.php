@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App;
 
@@ -19,16 +20,28 @@ abstract class Controller
 
     }
 
+    /**
+     * Return Environment
+     * @return Environment
+     */
     public function getTwig(): Environment
     {
         return $this->twig;
     }
 
+    /**
+     * Return Database
+     * @return Database
+     */
     public function getDatabase(): Database
     {
         return $this->database;
     }
 
+    /**
+     * Return Session
+     * @return Session
+     */
     public function getSession(): Session
     {
         return $this->session;

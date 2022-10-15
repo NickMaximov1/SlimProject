@@ -11,7 +11,7 @@ use Repository\UserRepository;
 
 class UsersListController extends Controller
 {
-    public function __invoke(Request $request, Response $response): Response
+    public function viewUsersList(Request $request, Response $response): Response
     {
         $userRepo = new UserRepository();
         $users = $userRepo->getAllUsers($this->getDatabase());

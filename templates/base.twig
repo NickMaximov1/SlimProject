@@ -13,11 +13,7 @@
 </head>
 <body>
 
-{% if user.role == 'admin' %}
-    {% include 'adminPanel.twig' %}
-{% else %}
-    {% include 'navigation.twig' %}
-{% endif %}
+{% include 'navigation.twig' %}
 
 {% block body %}{% endblock %}
 

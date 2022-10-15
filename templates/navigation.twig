@@ -1,12 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="">SlimProject</a>
+        <a class="navbar-brand" href="/">SlimProject</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="d-flex justify-content-end">
+            {% if user.role == 'admin' %}
+                {% include 'adminPanel.twig' %}
+            {% endif %}
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user is not null %}
@@ -14,8 +17,8 @@
                             <a class="nav-link" href="/logout">Log out <span class="sr-only"></span></a>
                         </li>
                     {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link" href="login">Log in <span class="sr-only"></span></a>
+                        <li class="nav-item active" id="login-button">
+                            <a class="nav-link" href="/login">Log in <span class="sr-only"></span></a>
                         </li>
 
                     {% endif %}
@@ -24,3 +27,4 @@
         </div>
     </div>
 </nav>
+<script type="text/javascript" src="/js/viewLoginButton.js"></script>

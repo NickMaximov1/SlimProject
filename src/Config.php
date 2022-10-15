@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App;
 
@@ -18,14 +19,21 @@ class Config
         }
     }
 
+    /**
+     * Return Database data
+     * @return array
+     */
     public function getData(): array
     {
         return $this->data;
     }
 
+    /**
+     * Return descriptions
+     * @return array
+     */
     public function getDesc(): array
     {
         return $this->descriptions;
     }
-
 }

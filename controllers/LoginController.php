@@ -8,10 +8,21 @@ use CustomExp\LoginException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Repository\UserRepository;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class LoginController extends Controller
 {
-    public function __invoke(Request $request, Response $response): Response
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function viewLogin(Request $request, Response $response): Response
     {
         $body = $this->getTwig()->render('login.twig', [
             'message' => $this->getSession()->flush('message'),
